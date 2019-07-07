@@ -1,0 +1,60 @@
+<h1>Detalle de Consumos</h1>
+
+<table id="infoTarjeta">
+    <tr>
+        <th>Cliente: </th>
+        <td>{{cliente.nombre}}</td>
+    </tr>
+    <tr>
+        <th>Tarjeta Numero: </th>
+        <td>{{tarjeta.numeroTarjeta}}</td>
+    </tr>
+    <tr>
+        <th>Tipo: </th>
+        <td>{{tarjeta.tipo}}</td>
+    </tr>
+
+    <tr>
+        <th>CCV: </th>
+        <td>{{tarjeta.ccv}}</td>
+    </tr>
+    <tr>
+        <th>Estado: </th>
+        <td>{{tarjeta.estadoTarjeta}}</td>
+    </tr>
+    <tr>
+        <th>Fecha de creacion: </th>
+        <td>{{tarjeta.fechaCreacion | date: 'yyyy-MM':'+0000'}}</td>
+    </tr>
+    <tr>
+        <th>Expira: </th>
+        <td>{{tarjeta.fechaExpiracion| date: 'yyyy-MM':'+0000'}}</td>
+    </tr>
+    <tr>
+    <th>Asesor Banco: </th>
+        <td>{{tarjeta.asesorBancario.nombre}}</td>
+    </tr>
+
+</table>
+
+<table id="infoConsumos">
+        <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>monto</th>
+            <th>cuotas</th>
+        </tr>
+        
+        <tr *ngFor="let consumo of consumos; let i = index">
+            <td>{{consumo.fechaConsumo| date: 'yyyy-MM-dd HH:mm:ss':'+0000'}}</td>
+            <td>{{consumo.descripcion}}</td>
+            <td>{{consumo.monto | currency}}</td>
+            <td>{{consumo.cuotas}}</td>
+        </tr>
+        
+        </table>
+
+
+<mat-dialog-actions>
+    <button mat-flat-button color="primary" (click)="close()">Close</button>
+</mat-dialog-actions>

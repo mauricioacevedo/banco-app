@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  mysql1:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./mysql/scripts:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: banco
+
+  frontend:
+    image: 'macevedg/banco-frontend'
+    build: '.'
+    ports:
+      - 3000:80
+    depends_on: 
+    - mysql1
+    - backend
+      

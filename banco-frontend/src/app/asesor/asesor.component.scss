@@ -1,0 +1,47 @@
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+    li {
+        text-align: left;
+        a {
+            padding: 1.5em;
+            font-size: .9em;
+            
+            /*&:hover {
+                background:red;
+            }*/
+        }
+    }
+
+    li:hover {
+        background-color: #F2F079;
+    }
+}
+
+table {
+    
+    border-collapse: separate;
+    border-spacing: 1;
+    width: 90%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+  }
+  
+  th {
+    background-color: lightgray;   
+  }
+
+  th, td {
+    text-align: center;
+    padding: 8px;
+    
+    ul {
+        list-style: none;
+    }
+
+  }

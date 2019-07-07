@@ -1,0 +1,36 @@
+header {
+    background: black;
+    border-radius: 0px 0px 0px 50px;
+    .logo {
+        font-weight: bold;
+    }
+
+    nav {
+        justify-self: right;
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            
+
+            li {
+                float: left;
+
+                a {
+                    padding: 1.5em;
+                    font-size: .9em;
+
+                    &:hover {
+                        background:darkgray;
+                    }
+                }
+            }
+        }
+    }
+}
+
+img {
+    width: 80px;
+    float: right;
+}

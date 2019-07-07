@@ -1,0 +1,38 @@
+<h1>Clientes del Banco!</h1>
+<br>
+<br>
+<table>
+<tr>
+    <th>Nombre</th>
+    <th>Dirección</th>
+    <th>Ciudad</th>
+    <th>Telefono</th>
+    <th>Tarjetas</th>
+</tr>
+
+<tr *ngFor="let cliente of clientes; let i = index">
+    <td>{{cliente.nombre}}</td>
+    <td>{{cliente.direccion}}</td>
+    <td>{{cliente.ciudad}}</td>
+    <td>{{cliente.telefono}}</td>
+    <td>    
+        <input type="checkbox" id="list-item-{{i}}">
+        <label for="list-item-{{i}}" class="first">Ver({{cliente.tarjetas.length}}) tarjetas</label>
+    
+        <ul>
+            <li *ngFor="let tarjeta of cliente.tarjetas">
+                    <button class="detalle" mat-button (click)=show(cliente,tarjeta)> {{tarjeta.tipo}} ({{tarjeta.numeroTarjeta}})</button>
+            </li>        
+        </ul>
+
+    </td>
+
+</tr>
+
+</table>
+
+<!--ul>
+    <li *ngFor="let cliente of clientes; let i = index">
+        {{cliente.nombre}} <button mat-raised-button color="primary" (click)=show(cliente.nombre)>Primary</button>
+    </li>
+</ul-->

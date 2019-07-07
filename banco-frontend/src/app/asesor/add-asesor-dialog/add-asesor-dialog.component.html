@@ -1,0 +1,19 @@
+<h1>Nuevo Asesor</h1>
+
+
+<form (ngSubmit)="submit()" #aForm="ngForm">
+    <table>
+        <tr>
+            <th>Nombre: </th>
+            <td><input type="text" [(ngModel)]="asesor.nombre" id="nombre" 
+                name="nombre" required #nombre="ngModel" /></td>
+        </tr>
+        <tr>
+            <th>Especialidad: </th>
+            <td><input type="text" [(ngModel)]="asesor.especialidad" id="especialidad" 
+                name="especialidad" required #especialidad="ngModel" /> </td>
+        </tr>
+        </table>
+      
+        <button mat-flat-button color="primary" [disabled]="!aForm.form.valid" type="submit">Crear</button>
+      </form>
