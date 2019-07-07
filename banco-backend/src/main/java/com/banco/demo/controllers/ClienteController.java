@@ -1,9 +1,10 @@
 package com.banco.demo.controllers;
 
 import com.banco.demo.entities.Cliente;
-import com.banco.demo.repositories.ClienteRepository;
+import com.banco.demo.services.ClienteService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +17,22 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ClienteController {
 
-    private final ClienteRepository clienteRepository;
-
-
+    private ClienteService clienteSerfvice;
+    
     @GetMapping(path = "/clientes")
     public List<Cliente> getAllClientes(){
-        return this.clienteRepository.findAll();
+        return this.clienteSerfvice.findAll();
     }
 
     @PostMapping(path = "/clientes")
     public Cliente createCliente(@Valid @RequestBody Cliente c){
 
-        return this.clienteRepository.save(c);
+        return this.clienteSerfvice.save(c);
     }
 
     @GetMapping(path = "/clientes/{id}")
     public ResponseEntity<Cliente> getClienteById(@PathVariable(value="id") Integer id){
-        Optional<Cliente> c = this.clienteRepository.findById(id);
+        Optional<Cliente> c = this.clienteSerfvice.findById(id);
         if(c.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -45,7 +45,7 @@ public class ClienteController {
     public ResponseEntity<Cliente> updateCliente(@PathVariable(value = "id") Integer id,
                                     @Valid  @RequestBody  Cliente c){
 
-        Optional<Cliente> op = this.clienteRepository.findById(id);
+        Optional<Cliente> op = this.clienteSerfvice.findById(id);
         if(op.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -56,7 +56,7 @@ public class ClienteController {
         cliente.setDireccion(c.getDireccion());
         cliente.setTelefono(c.getTelefono());
 
-        Cliente updated = this.clienteRepository.save(cliente);
+        Cliente updated = this.clienteSerfvice.save(cliente);
 
         return ResponseEntity.ok(updated);
 
@@ -66,12 +66,12 @@ public class ClienteController {
     @DeleteMapping(path = "/clientes/{id}")
     public  ResponseEntity<Cliente> deleteCliente(@PathVariable(value = "id") Integer id) {
 
-        Optional<Cliente> op = this.clienteRepository.findById(id);
+        Optional<Cliente> op = this.clienteSerfvice.findById(id);
         if(op.isEmpty()){
             return ResponseEntity.notFound().build();
         }
 
-        this.clienteRepository.delete(op.get());
+        this.clienteSerfvice.delete(op.get());
 
         return ResponseEntity.ok().build();
     }

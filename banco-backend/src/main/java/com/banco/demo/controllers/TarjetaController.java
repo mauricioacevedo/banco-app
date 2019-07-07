@@ -1,9 +1,11 @@
 package com.banco.demo.controllers;
 
 import com.banco.demo.entities.Tarjeta;
-import com.banco.demo.repositories.TarjetaRepository;
+
+import com.banco.demo.services.TarjetaService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TarjetaController {
 
-    private final TarjetaRepository tarjetaRepository;
+    private TarjetaService tarjetaRepository;
 
     @GetMapping(path = "/tarjetas")
     public List<Tarjeta> getAllTarjetas(){

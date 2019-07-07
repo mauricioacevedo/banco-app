@@ -13,9 +13,23 @@ services:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: banco
 
+  backend:
+    image: 'macevedg/banco-backend'
+    restart: always
+    build: ./banco-backend
+    working_dir: /app
+    volumes:
+      - ./banco-backend:/app
+      - ~/.m2:/root/.m2
+    expose:
+      - "8080"
+    command: mvn clean spring-boot:run
+    depends_on:
+      - mysql
+
   frontend:
     image: 'macevedg/banco-frontend'
-    build: '.'
+    build: './banco-frontend'
     ports:
       - 3000:80
     depends_on: 

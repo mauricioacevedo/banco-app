@@ -1,9 +1,10 @@
 package com.banco.demo.controllers;
 
 import com.banco.demo.entities.Consumo;
-import com.banco.demo.repositories.ConsumoRepository;
+import com.banco.demo.services.ConsumoService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,22 +17,22 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ConsumoController {
 
-    private final ConsumoRepository consumoRepository;
+    private ConsumoService consumoService;
 
     @GetMapping(path = "/consumos")
     public List<Consumo> getAllConsumos(){
-        return this.consumoRepository.findAll();
+        return this.consumoService.findAll();
     }
 
     @PostMapping(path = "/consumos")
     public Consumo createConsumo(@Valid @RequestBody Consumo c){
 
-        return this.consumoRepository.save(c);
+        return this.consumoService.save(c);
     }
 
     @GetMapping(path = "/consumos/{id}")
     public ResponseEntity<Consumo> getConsumoById(@PathVariable(value="id") Integer id){
-        Optional<Consumo> c = this.consumoRepository.findById(id);
+        Optional<Consumo> c = this.consumoService.findById(id);
         if(c.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -44,7 +45,7 @@ public class ConsumoController {
     public ResponseEntity<Consumo> updateConsumo(@PathVariable(value = "id") Integer id,
                                                  @Valid  @RequestBody  Consumo c){
 
-        Optional<Consumo> op = this.consumoRepository.findById(id);
+        Optional<Consumo> op = this.consumoService.findById(id);
         if(op.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -56,7 +57,7 @@ public class ConsumoController {
         consumo.setMonto(c.getMonto());
         consumo.setTarjetaId(c.getTarjetaId());
 
-        Consumo updated = this.consumoRepository.save(consumo);
+        Consumo updated = this.consumoService.save(consumo);
 
         return ResponseEntity.ok(updated);
 
@@ -65,12 +66,12 @@ public class ConsumoController {
     @DeleteMapping(path = "/consumos/{id}")
     public  ResponseEntity<Consumo> deleteConsumo(@PathVariable(value = "id") Integer id) {
 
-        Optional<Consumo> op = this.consumoRepository.findById(id);
+        Optional<Consumo> op = this.consumoService.findById(id);
         if(op.isEmpty()){
             return ResponseEntity.notFound().build();
         }
 
-        this.consumoRepository.delete(op.get());
+        this.consumoService.delete(op.get());
 
         return ResponseEntity.ok().build();
     }
@@ -79,7 +80,7 @@ public class ConsumoController {
     @GetMapping(path = "/consumos/detalles/{id}")
     public List<Consumo> getConsumosByTarjeta(@PathVariable(value="id") Integer tarjetaId){
 
-        return this.consumoRepository.findConsumosByTarjeta(tarjetaId);
+        return this.consumoService.findConsumosByTarjeta(tarjetaId);
 
     }
 }
