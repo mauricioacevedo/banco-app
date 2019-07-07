@@ -16,7 +16,9 @@ services:
   backend:
     image: 'macevedg/banco-backend'
     restart: always
-    build: ./banco-backend
+    build: 
+      context: ./banco-backend
+      dockerfile: back.Dockerfile
     working_dir: /app
     volumes:
       - ./banco-backend:/app
@@ -25,11 +27,13 @@ services:
       - "8080"
     command: mvn clean spring-boot:run
     depends_on:
-      - mysql
+      - mysql1
 
   frontend:
     image: 'macevedg/banco-frontend'
-    build: './banco-frontend'
+    build: 
+      context: './banco-frontend'
+      dockerfile: front.Dockerfile
     ports:
       - 3000:80
     depends_on: 
