@@ -1,0 +1,6 @@
+*.original
+classes
+generated*
+maven*
+surefire*
+test-classes
