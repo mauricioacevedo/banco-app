@@ -8,7 +8,7 @@ import {Asesor} from '../asesor/asesor';
 })
 export class AsesorService {
 
-  api_url: string = 'http://localhost:8080/';
+  api_url: string ='http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
   getAsesores(): Observable<Asesor[]> {
