@@ -8,6 +8,7 @@
     <th>Ciudad</th>
     <th>Telefono</th>
     <th>Tarjetas</th>
+    <th>Operacion</th>
 </tr>
 
 <tr *ngFor="let cliente of clientes; let i = index">
@@ -21,18 +22,18 @@
     
         <ul>
             <li *ngFor="let tarjeta of cliente.tarjetas">
-                    <button class="detalle" mat-button (click)=show(cliente,tarjeta)> {{tarjeta.tipo}} ({{tarjeta.numeroTarjeta}})</button>
+                    <button class="large" mat-button (click)=show(cliente,tarjeta)> {{tarjeta.tipo}} ({{tarjeta.numeroTarjeta}})</button>
             </li>        
         </ul>
 
+    </td>
+    <td>
+        <label>Editar</label> - <label>Borrar</label>
     </td>
 
 </tr>
 
 </table>
 
-<!--ul>
-    <li *ngFor="let cliente of clientes; let i = index">
-        {{cliente.nombre}} <button mat-raised-button color="primary" (click)=show(cliente.nombre)>Primary</button>
-    </li>
-</ul-->
+<br>
+<button class="l" mat-flat-button color="primary" (click)="add()">Nuevo Cliente</button>

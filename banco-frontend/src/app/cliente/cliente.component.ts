@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {ClienteService} from '../services/cliente.service';
 import {Cliente} from './cliente.interface';
 import {MatDialog, MatDialogConfig} from "@angular/material";
+
 import { ConsumoDialogComponent } from './consumo-dialog/consumo-dialog.component';
 import { Tarjeta } from './tarjeta.interface';
 

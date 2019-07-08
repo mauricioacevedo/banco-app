@@ -20,6 +20,7 @@ import { ConsumoDialogComponent } from './cliente/consumo-dialog/consumo-dialog.
 import { AddAsesorDialogComponent } from './asesor/add-asesor-dialog/add-asesor-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule, 
     MatDialogModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]
