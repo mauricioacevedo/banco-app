@@ -3,7 +3,7 @@ FROM node:10.16-alpine AS builder
 
 WORKDIR /usr/src/app
 COPY . .
-RUN npm ci && npm run build
+#RUN npm ci && npm run build
 
 #2: Use nginx
 FROM nginx:stable-alpine
