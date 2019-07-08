@@ -4,6 +4,7 @@ package com.banco.demo;
 import com.banco.demo.entities.Asesor;
 import com.banco.demo.entities.Cliente;
 
+import com.banco.demo.entities.Tarjeta;
 import com.banco.demo.services.AsesorService;
 import com.banco.demo.services.ClienteService;
 
@@ -18,54 +19,64 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class BancoBackendApplicationTests {//Unit tests!!!
 
-	@Autowired
-	private ClienteService clienteService;
-	@Autowired
-	private AsesorService asesorService;
+	//@LocalServerPort
+	//private int port;
 
+	//TestRestTemplate restTemplate = new TestRestTemplate();
+
+	//HttpHeaders headers = new HttpHeaders();
+
+	/*@Test
+	public void checkService() {
+		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+
+		ResponseEntity<String> response = restTemplate.exchange(
+				createURLWithPort("/check"),
+				HttpMethod.GET, entity, String.class);
+		String answer= response.getBody();
+
+		assertTrue(answer.contains("working"));
+	}*/
 
 	@Test
-	public void saveCliente() throws Exception {
+	public void createCliente(){
+		Cliente c = new Cliente();
 
-		Cliente cliente = new Cliente();
-		cliente.setNombre("Juli");
-		cliente.setCiudad("Medellin");
-		cliente.setDireccion("Namek");
-		cliente.setTelefono("00000");
-
-		Cliente res=this.clienteService.save(cliente);
-
-		assertNotNull(res);
-
-		//ObjectMapper map = new ObjectMapper();
-		/*String jsonClient=null;
-		try {
-			jsonClient = map.writeValueAsString(cliente);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}*/
+		assertNotNull(c);
 	}
 
 	@Test
-	public void saveAsesor() throws Exception {
+	public void createTarjeta(){
+		Tarjeta c = new Tarjeta();
 
-		Asesor asesor = new Asesor();
-		asesor.setNombre("Camilo");
-		asesor.setEspecialidad("Finanzas");
-
-		Asesor res=this.asesorService.save(asesor);
-
-		assertNotNull(res);
-
+		assertNotNull(c);
 	}
 
+	@Test
+	public void createAsesor(){
+		Asesor c = new Asesor();
 
+		assertNotNull(c);
+	}
+
+/*
+	private String createURLWithPort(String uri) {
+		return "http://localhost:" + port + uri;
+	}
+*/
 }
