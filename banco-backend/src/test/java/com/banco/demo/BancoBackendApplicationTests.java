@@ -56,7 +56,7 @@ public class BancoBackendApplicationTests {//Unit tests!!!
 	@Test
 	public void createCliente(){
 		Cliente c = new Cliente();
-		c = null;
+
 		assertNotNull(c);
 	}
 
